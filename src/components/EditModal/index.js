@@ -11,7 +11,7 @@ function EditModal({ currentTodo, tasks, setTasks, setShowModal }) {
         setTasks(
             tasks.map((task) => {
                 if (task.todo === currentTodo.todo) {
-                    return { todo: newTodo, addedOn: new Date().toLocaleString() }
+                    return {slNo: currentTodo.slNo , todo: newTodo, addedOn: Date.now(), color: currentTodo.color }
                 }
                 return task
             })
@@ -20,11 +20,11 @@ function EditModal({ currentTodo, tasks, setTasks, setShowModal }) {
     }
 
     return (
-        <div className='modal-background'>
-            <div className='edit-modal'>
+        <div className='modal-background' onClick={()=>{setShowModal(false)}}>
+            <div className='edit-modal' onClick={(e)=>{e.stopPropagation()}}>
                 <TextField
                     id="outlined-required"
-                    label="What's on your mind!"
+                    label="Changed your thoughts?"
                     value={newTodo}
                     onChange={(e) => { setNewTodo(e.target.value) }}
                     onFocus={(e) => { e.target.value = '' }}

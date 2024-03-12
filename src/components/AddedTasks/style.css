@@ -3,19 +3,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
 }
 
 .task-div{
-    width: 50%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: grab;
+    padding: 1rem 1.8rem;
+    box-shadow: 0 2px 2px grey;
+    border-radius: 1.5rem;
 }
 
 h3, p{
-    margin: 0;
-    padding: 0;
+    margin: 0.18rem;
+    padding: 0.15rem;
 }
 
 .task-container .empty-text{
@@ -26,4 +32,9 @@ h3, p{
 .task-container .date-added{
     font-size: 0.9rem;
     opacity: 0.6;
+}
+
+.edit-container{
+    display: flex;
+    gap: 1.5rem;
 }

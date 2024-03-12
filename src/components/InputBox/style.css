@@ -1,7 +1,20 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin: 2.8rem auto;
+}
+
 .input-box-container{
-    margin: 5rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
+}
+
+.import-export-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2rem;
 }
