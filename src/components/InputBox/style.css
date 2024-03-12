@@ -1,0 +1,7 @@
+.input-box-container{
+    margin: 5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}

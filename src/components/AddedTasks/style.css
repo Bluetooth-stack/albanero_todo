@@ -1,0 +1,29 @@
+.task-container{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.task-div{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+}
+
+h3, p{
+    margin: 0;
+    padding: 0;
+}
+
+.task-container .empty-text{
+    opacity: 0.5;
+    font-size: 1.2rem;
+}
+
+.task-container .date-added{
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
