@@ -4,10 +4,16 @@ import InputBox from './components/InputBox';
 import AddedTasks from './components/AddedTasks';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Grid, Input } from 'react-spreadsheet-grid'
+
+
 
 function App() {
 
   const [tasks, setTasks] = useState([]);
+  const [tableView, setTableView] = useState(false);
+
+
 
   function handleExport() {
     if (!tasks.length) {
@@ -66,14 +72,27 @@ function App() {
     reader.readAsText(file)
   }
 
-  function handleClearAll(){
-    if(window.confirm('Are you sure, you want to clear all todos?')){
+  function handleClearAll() {
+    if (window.confirm('Are you sure, you want to clear all todos?')) {
       setTasks([]);
     }
-    else{
+    else {
       return
     }
   }
+
+  function handleTableTodoTitileChange(val, currentSlNo, field){
+    setTasks(
+      tasks.map((task) => {
+          if (task.slNo === currentSlNo) {
+              return {slNo: currentSlNo , todo: val, addedOn: Date.now(), color: task.color }
+          }
+          return task
+      })
+  )
+  }
+
+
 
   return (
     <div className="App">
@@ -83,10 +102,50 @@ function App() {
         </h1>
       </header>
       <InputBox tasks={tasks} setTasks={setTasks} handleExport={handleExport} handleImport={handleImport} />
-      <AddedTasks tasks={tasks} setTasks={setTasks} />
-      <Button disabled={!tasks.length} variant="outlined" color='error' startIcon={<DeleteIcon />} id='clear-btn' onClick={handleClearAll} >
-        Clear
-      </Button>
+      {
+        tableView ?
+          <Grid
+            columns={[
+              {
+                title: () => 'Todos',
+                value: (tasks, { focus }) => {
+                  return (
+                    <Input
+                      value={tasks.todo}
+                      focus={focus}
+                      onChange={(value)=>{handleTableTodoTitileChange(value, tasks.slNo, 'todo')}}
+                    />
+                  );
+                }
+              }, {
+                title: () => 'Added On',
+                value: (tasks) => {
+                  return (
+                    <span
+                      value={tasks.addedOn}
+                    >
+                      {new Date(+tasks?.addedOn).toLocaleString()}
+                    </span>
+                  );
+                }
+              }
+            ]}
+            rows={tasks}
+            getRowKey={tasks => tasks.slNo}
+          />
+          :
+          <AddedTasks tasks={tasks} setTasks={setTasks} />
+      }
+
+      <div className='view-container'>
+        <Button disabled={!tasks.length} variant="outlined" color='error' startIcon={<DeleteIcon />} id='clear-btn' onClick={handleClearAll} >
+          Clear
+        </Button>
+
+        <Button disabled={!tasks.length} variant="outlined" color='warning' id='table-view-btn' onClick={() => { setTableView(!tableView) }} >
+          {!tableView ? 'Table View' : "Card View"}
+        </Button>
+      </div>
     </div>
   );
 }

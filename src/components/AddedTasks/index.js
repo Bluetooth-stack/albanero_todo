@@ -52,7 +52,7 @@ function AddedTasks({ tasks, setTasks }) {
     function handleColorChange(e, currentTodo) {
         setTasks(
             tasks.map((task) => {
-                if (task.todo === currentTodo.todo) {
+                if (task.slNo === currentTodo.slNo) {
                     return { ...task, color: e.target.value }
                 }
                 return task

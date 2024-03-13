@@ -8,7 +8,16 @@
   align-items: center;
 }
 
-#clear-btn{
+.view-container{
+  display: flex;
+  gap: 1rem;
   position: absolute;
   bottom: 5rem;
+}
+
+.SpreadsheetGrid {
+  width: 800px !important;
+}
+.SpreadsheetGrid__cell, .SpreadsheetGrid__headCell {
+  width: 400px !important;
 }

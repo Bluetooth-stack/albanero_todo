@@ -10,7 +10,7 @@ function EditModal({ currentTodo, tasks, setTasks, setShowModal }) {
     function handleChangeClick() {
         setTasks(
             tasks.map((task) => {
-                if (task.todo === currentTodo.todo) {
+                if (task.slNo === currentTodo.slNo) {
                     return {slNo: currentTodo.slNo , todo: newTodo, addedOn: Date.now(), color: currentTodo.color }
                 }
                 return task
